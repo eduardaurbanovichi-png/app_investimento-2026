@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Crypto Investment AI</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Share Tech Mono', monospace;
+}
+
+body{
+    min-height:100vh;
+    background:
+    radial-gradient(circle at top,#3b0066,transparent 40%),
+    linear-gradient(120deg,#050505,#110022);
+    color:#fff;
+    padding:40px;
+}
+
+
+/* CONTAINER */
+
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+
+
+/* HEADER */
+
+header{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+header h1{
+    color:#9dff00;
+    text-shadow:
+    0 0 15px #9dff00;
+    font-size:40px;
+}
+
+header p{
+    color:#c6a6ff;
+}
+
+
+/* GLASS CARD */
+
+.card{
+
+    background:
+    rgba(255,255,255,0.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:
+    0 0 30px rgba(157,255,0,.15);
+
+    margin-bottom:25px;
+
+}
+
+
+/* FORM */
+
+.grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+
+}
+
+
+label{
+
+color:#9dff00;
+display:block;
+margin-bottom:8px;
+
+}
+
+
+input{
+
+width:100%;
+
+padding:14px;
+
+border-radius:12px;
+
+border:none;
+
+background:#050505;
+
+color:white;
+
+outline:none;
+
+box-shadow:
+inset 0 0 10px #5600ff;
+
+}
+
+
+button{
+
+margin-top:25px;
+
+width:100%;
+
+padding:15px;
+
+border-radius:15px;
+
+border:none;
+
+cursor:pointer;
+
+background:
+linear-gradient(90deg,#9dff00,#00ffaa);
+
+font-weight:bold;
+
+font-size:18px;
+
+box-shadow:
+0 0 20px #9dff00;
+
+}
+
+
+/* RESULTADO */
+
+.result{
+
+font-size:20px;
+line-height:2;
+
+color:#d9ffb3;
+
+}
+
+.highlight{
+
+color:#9dff00;
+font-size:28px;
+
+}
+
+
+/* ESTRATEGIAS */
+
+.strategy{
+
+border-left:4px solid #9dff00;
+padding-left:20px;
+margin:20px 0;
+
+}
+
+.strategy h3{
+
+color:#9dff00;
+
+}
+
+
+footer{
+
+text-align:center;
+opacity:.5;
+margin-top:30px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<header>
+
+<h1>CRYPTO INVESTMENT AI</h1>
+
+<p>Simulador futurista de crescimento patrimonial</p>
+
+</header>
+
+
+
+<div class="card">
+
+
+<h2>Calculadora de Objetivo</h2>
+
+
+<div class="grid">
+
+
+<div>
+<label>Capital inicial (R$)</label>
+<input id="initial" type="number" value="1000">
+</div>
+
+
+<div>
+<label>Aporte mensal (R$)</label>
+<input id="monthly" type="number" value="500">
+</div>
+
+
+
+<div>
+<label>Objetivo financeiro (R$)</label>
+<input id="goal" type="number" value="100000">
+</div>
+
+
+
+<div>
+<label>Rentabilidade anual (%)</label>
+<input id="rate" type="number" value="15">
+</div>
+
+
+</div>
+
+
+<button onclick="calculate()">
+EXECUTAR SIMULAÇÃO
+</button>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+
+<h2>Resultado da Simulação</h2>
+
+
+<div id="result" class="result">
+
+Aguardando dados...
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+
+<h2>Estratégias Crypto</h2>
+
+
+<div class="strategy">
+
+<h3>Bitcoin (BTC)</h3>
+
+<p>
+Estratégia sugerida:
+DCA (compras periódicas), acumulando BTC
+independente da volatilidade.
+Foco em longo prazo e proteção contra inflação.
+</p>
+
+</div>
+
+
+
+<div class="strategy">
+
+<h3>Cardano (ADA)</h3>
+
+<p>
+
+Estratégia:
+exposição moderada,
+acompanhamento do ecossistema,
+staking quando disponível,
+e diversificação com ativos maiores.
+
+</p>
+
+</div>
+
+
+
+<div class="strategy">
+
+<h3>Gestão de risco</h3>
+
+<p>
+
+Evite concentrar todo patrimônio em uma única moeda.
+Uma carteira equilibrada pode combinar:
+reserva financeira,
+ativos tradicionais e criptos.
+
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<footer>
+
+Sistema educacional • Não representa recomendação financeira
+
+</footer>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+function calculate(){
+
+
+let initial =
+Number(document.getElementById("initial").value);
+
+
+let monthly =
+Number(document.getElementById("monthly").value);
+
+
+let goal =
+Number(document.getElementById("goal").value);
+
+
+let rate =
+Number(document.getElementById("rate").value);
+
+
+
+let monthlyRate =
+Math.pow(1 + rate/100,1/12)-1;
+
+
+
+let months=0;
+
+let value=initial;
+
+
+
+while(value < goal && months < 600){
+
+
+value =
+value*(1+monthlyRate)+monthly;
+
+months++;
+
+
+}
+
+
+
+let years =
+(months/12).toFixed(1);
+
+
+
+document.getElementById("result").innerHTML=`
+
+Patrimônio projetado:
+<br>
+
+<span class="highlight">
+R$ ${value.toLocaleString('pt-BR')}
+</span>
+
+
+<br><br>
+
+
+Tempo estimado:
+<br>
+
+<span class="highlight">
+${months} meses (${years} anos)
+</span>
+
+
+<br><br>
+
+
+Estratégia simulada:
+<br>
+
+Aporte constante + juros compostos.
+
+`;
+
+}
+
+
+</script>
+
+
+</body>
+</html>
